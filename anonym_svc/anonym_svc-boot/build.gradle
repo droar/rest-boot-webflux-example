@@ -1,0 +1,44 @@
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'java'
+apply plugin: 'war'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {	
+	// Project libraries
+	compile project(':anonym_svc-env')
+	compile project(':anonym_svc-common')
+	compile project(':anonym_svc-web')
+	runtimeOnly project(':anonym_svc-core')
+
+	// Pool connection
+	compile "com.zaxxer:HikariCP"
+	
+	// Spring libraries
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-hateoas'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	
+	// Util libraries
+	compileOnly 'org.projectlombok:lombok'
+	
+	// Common libraries
+	runtimeOnly 'org.postgresql:postgresql'
+	annotationProcessor 'org.projectlombok:lombok'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'io.projectreactor:reactor-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+
+	
+	// Use JUnit test framework
+    testImplementation 'junit:junit:4.12'
+}

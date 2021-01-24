@@ -1,0 +1,4 @@
+rootProject.name = 'anonym_svc'
+
+// Inlcudes of all subprojects
+include 'anonym_svc-boot', 'anonym_svc-common', 'anonym_svc-core', 'anonym_svc-env', 'anonym_svc-web'
