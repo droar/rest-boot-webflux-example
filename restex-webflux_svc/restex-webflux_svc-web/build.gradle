@@ -1,0 +1,31 @@
+apply plugin: "org.springframework.boot"
+apply plugin: "io.spring.dependency-management"
+
+apply plugin: "java"
+
+jar.enabled=true
+bootJar.enabled = false
+	
+dependencies {	
+	// Project libraries - well be having by herency hateoas/web/webflux projects
+	compile project(":restex-webflux_svc-core")
+
+	// Util libraries
+	compileOnly "org.projectlombok:lombok"
+	
+	// Common libraries
+	annotationProcessor "org.projectlombok:lombok"
+	testImplementation "io.projectreactor:reactor-test"
+	testImplementation "org.springframework.security:spring-security-test"
+	
+		
+	// Use JUnit test framework
+    testImplementation "junit:junit:4.12"
+}
+
+
+/*
+test {
+	useJUnitPlatform()
+}
+*/
