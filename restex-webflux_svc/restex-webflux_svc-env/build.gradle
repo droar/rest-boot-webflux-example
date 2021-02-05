@@ -1,0 +1,24 @@
+apply plugin: "org.springframework.boot"
+apply plugin: "io.spring.dependency-management"
+
+apply plugin: "java"
+
+jar.enabled=true
+bootJar.enabled = false
+	
+dependencies {	
+		
+	// Common libraries
+	// runtimeOnly "org.postgresql:postgresql"
+	// H2 for testing
+	runtimeOnly "com.h2database:h2"
+	
+	// Util libraries
+	compileOnly "org.projectlombok:lombok"
+	compile "ch.qos.logback:logback-classic"
+	compile "org.codehaus.janino:janino"
+	
+	// Lombook
+	annotationProcessor "org.projectlombok:lombok"
+}
+

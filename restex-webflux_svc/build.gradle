@@ -1,0 +1,50 @@
+buildscript {
+    ext {
+    	//Versions
+        springBootVersion="2.4.2"
+        springDepVersion="1.0.11.RELEASE"
+        
+        javaxServletVersion="3.0.1"
+        jsonVersion="20180813"
+        bootFwkVersion="0.0.1-RELEASE"
+        queryDslVersion="4.4.0"
+        springSecurtyOauthVersion="2.5.0.RELEASE"
+        modelmapperVersion="2.3.2"
+        
+        //Java compatibility
+        javaVersion="11"
+    }
+    
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+    }
+    
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+    }
+}
+
+plugins{
+    // Spring
+    id "org.springframework.boot" version "${springBootVersion}" apply false
+	id "io.spring.dependency-management" version "${springDepVersion}" apply false
+}
+
+// Shared repos
+allprojects {
+    repositories {
+    	google()
+        mavenCentral()
+        jcenter()
+        maven {
+        	url "https://maven.pkg.github.com/droar/personal-repo/repository/"
+        	credentials {
+	            username "droar"
+	            password "36b3d8be49dc30fca27b3332a684c48519e51a88"
+        	}
+    	}
+ 
+    }
+}

@@ -1,0 +1,22 @@
+apply plugin: "org.springframework.boot"
+apply plugin: "io.spring.dependency-management"
+
+apply plugin: "java"
+
+jar.enabled=true
+bootJar.enabled = false
+
+dependencies {	
+	// Project libraries
+	compile "com.droar:boot-fwk-base:${bootFwkVersion}"
+	
+	compile "jakarta.persistence:jakarta.persistence-api"
+	compile "com.sun.xml.messaging.saaj:saaj-impl"
+	compileOnly "javax.servlet:javax.servlet-api:${javaxServletVersion}"
+	
+	// Util libraries
+	compileOnly "org.projectlombok:lombok"
+	
+	annotationProcessor "org.projectlombok:lombok"
+}
+

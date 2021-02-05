@@ -1,0 +1,47 @@
+apply plugin: "org.springframework.boot"
+apply plugin: "io.spring.dependency-management"
+
+apply plugin: 'java'
+
+jar.enabled=true
+bootJar.enabled = false
+
+// Var definition
+def generated = "src/main/generated-sources/java/queryDSL"
+
+dependencies {	
+	// Project libraries
+	compile project(":restex-webflux_svc-env")
+	compile project(":restex-webflux_svc-common")
+
+	// Needed libraries
+	compile "org.json:json:${jsonVersion}"
+	compile "jakarta.transaction:jakarta.transaction-api"
+	compile "org.hibernate:hibernate-core"
+	//compile "org.springframework:spring-r2dbc" //TODO: This for when time to implement the r2dbc client, have to remove spring data basis from FWK on common by exclusion.
+	annotationProcessor "org.springframework.boot:spring-boot-starter-data-jpa"
+	
+	// Spring libraries
+	compile "org.springframework.security.oauth:spring-security-oauth2:${springSecurtyOauthVersion}"
+	
+	// querydsl
+	compile "com.querydsl:querydsl-jpa:${queryDslVersion}"
+    compile "com.querydsl:querydsl-apt:${queryDslVersion}"
+    annotationProcessor "com.querydsl:querydsl-apt:${queryDslVersion}:jpa"
+    
+	// Common libraries
+	compileOnly "org.projectlombok:lombok"
+	annotationProcessor "org.projectlombok:lombok"
+}
+
+sourceSets {
+    main.java.srcDirs += [ generated ]
+}
+
+tasks.withType(JavaCompile) {
+    options.annotationProcessorGeneratedSourcesDirectory = file(generated)
+}
+ 
+clean.doLast {
+    file(generated).deleteDir()
+}
